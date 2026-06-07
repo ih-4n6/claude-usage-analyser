@@ -1,0 +1,21 @@
+# your report outputs: generated data, the HTML report, and your filled
+# analyst layer (contains your project names). All reproducible / personal.
+reports/
+
+# defensive: these generated/personal filenames must never be committed from
+# ANY location (e.g. stray backup folders). The committed schema is the
+# differently-named insights.template.json, which stays tracked.
+**/data.json
+**/index.html
+**/insights.json
+*_backup/
+
+# fetched pricing snapshot (re-fetched on next run)
+pricing_cache.json
+
+# python
+__pycache__/
+*.pyc
+
+# local preview server config
+.claude/

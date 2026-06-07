@@ -1,0 +1,22 @@
+{
+  "_note": "TEMPLATE. Copy to insights.json (gitignored) and fill it in a Claude session, grounding every claim in data.json. See AGENTS.md. Delete projects you don't want to annotate; the report still renders flags + metrics for them.",
+  "authored_for_window": "<e.g. rolling 7 days ending YYYY-MM-DD>",
+  "global": {
+    "headline": "<2-4 sentences: the one true story of where the spend goes and why. Diagnose before prescribing - e.g. a high cache-read bill with a 95%+ hit ratio is a context-size problem, not a caching problem.>",
+    "findings": [
+      {
+        "title": "<short finding title>",
+        "detail": "<what the numbers say and what to do about it; quote real figures from data.json>",
+        "lever": "<which cost line this targets, e.g. 'Targets cache reads ($NNN)'>"
+      }
+    ]
+  },
+  "projects": {
+    "<project-name-exactly-as-in-data.json>": {
+      "summary": "<1-3 sentences grounded in this project's metrics: cost, cache hit, ctx/call, calls/session, output share, top context-filling tools>",
+      "recommendations": [
+        "<actionable, ranked by likely saving; tie to a cost line where possible>"
+      ]
+    }
+  }
+}
