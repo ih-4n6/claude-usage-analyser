@@ -216,7 +216,7 @@ footer{margin-top:var(--sp7);padding-top:var(--sp4);border-top:1px solid var(--h
 
   <header class="masthead">
     <div class="kicker">Usage &amp; Cost Analysis · Claude Code · Pay-as-you-go API equivalent</div>
-    <h1>What 7 days of Claude Code would cost on the API — and where to trim it</h1>
+    <h1 id="mast-h1">What this period of Claude Code would cost on the API — and where to trim it</h1>
     <div class="dateline">
       <span>Window&nbsp; <b id="dl-window"></b></span>
       <span>Pricing&nbsp; <b>first-party API, prompt-caching on</b></span>
@@ -305,6 +305,7 @@ const esc=s=>(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&g
 const labelOf=k=>{const p=String(k||'').split('-');if(!p.length)return k;
   const fam=p[0].charAt(0).toUpperCase()+p[0].slice(1);const ver=p.slice(1).join('.');return ver?fam+' '+ver:fam;};
 
+document.getElementById('mast-h1').textContent=`What ${DATA.windowDays} days of Claude Code would cost on the API — and where to trim it`;
 document.getElementById('dl-window').textContent=DATA.windowLabel;
 document.getElementById('dl-gen').textContent=DATA.genLabel;
 document.getElementById('ft-gen').textContent='Generated '+DATA.genLabel;
@@ -312,7 +313,7 @@ document.getElementById('ft-gen').textContent='Generated '+DATA.genLabel;
 // verdict
 document.getElementById('v-total').innerHTML=fmtUSD(DATA.totalCost)+'<small>over '+DATA.windowDays+' days</small>';
 document.getElementById('v-lede').innerHTML='On metered API pricing, the same week of work would have cost <em>'+fmtUSD(DATA.totalCost)+'</em> — about <em>'+DATA.multiplier.toFixed(0)+'×</em> the cost of the Max&nbsp;20× subscription.';
-document.getElementById('v-sub').innerHTML='Max&nbsp;20× runs '+fmtUSD0(DATA.baselineMonthly)+'/month, ~'+fmtUSD(DATA.baselineWeek)+' for a 7-day slice. The subscription absorbed '+fmtUSD0(DATA.totalCost-DATA.baselineWeek)+' of usage you never paid for à la carte.';
+document.getElementById('v-sub').innerHTML='Max&nbsp;20× runs '+fmtUSD0(DATA.baselineMonthly)+'/month, ~'+fmtUSD(DATA.baselineWeek)+' for a '+DATA.windowDays+'-day slice. The subscription absorbed '+fmtUSD0(DATA.totalCost-DATA.baselineWeek)+' of usage you never paid for à la carte.';
 const cmax=Math.max(DATA.totalCost,DATA.baselineWeek);
 document.getElementById('v-compare').innerHTML=`
   <div class="row"><span class="lbl">API metered</span><span class="track"><span class="fill api" style="width:${(DATA.totalCost/cmax*100).toFixed(1)}%"></span></span><span class="val">${fmtUSD(DATA.totalCost)}</span></div>
